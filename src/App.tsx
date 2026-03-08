@@ -1,7 +1,8 @@
 import Header from "./components/Header"
 import NewServiceForm from "./components/NewServiceForm"
+import ServiCard from "./components/ServiceCard"
 
-export default function App() {
+function App() {
   return (
     <div>
       <Header />
@@ -9,4 +10,6 @@ export default function App() {
     </div>
   )
 }
+
+export default App
 
