@@ -62,9 +62,12 @@ export function NewServiceForm({onAddService}: questionarioProps){
                 <br />
                 <br />
 
-                <strong><button 
+                <strong><button
+                type="button"
                 onClick={salvar}
-                className="w-20 mx-auto bg-cyan-400 text-black border-none rounded cursor-pointer">Salvar</button></strong>
+                className="w-20 mx-auto bg-cyan-400 text-black border-none rounded cursor-pointer">
+                    Salvar
+                </button></strong>
             </form>
         </div>
     )

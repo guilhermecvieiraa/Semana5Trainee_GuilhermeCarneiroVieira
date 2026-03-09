@@ -4,7 +4,7 @@ interface Props{
     servico: questionario
 }
 
-export function ServiceCard({servico}: Props){
+function ServiceCard({servico}: Props){
     return(
         <div className="border p-4 rounded shadow bg-white mb-4">
             <p><strong>Cliente:</strong>{servico.nomeCliente}</p>
@@ -14,3 +14,4 @@ export function ServiceCard({servico}: Props){
     )
 }
 
+export default ServiceCard
