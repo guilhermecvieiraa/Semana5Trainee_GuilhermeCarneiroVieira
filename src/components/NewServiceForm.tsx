@@ -37,7 +37,7 @@ export function NewServiceForm({onAddService}: questionarioProps){
 
     return(
         <div className="bg-indigo-100 p-4 mx-auto w-100 rounded-lg shadow-md flex flex-col">
-            <form>
+            <form className="flex flex-col gap-4">
                 <strong>Nome do cliente:</strong>
                 <input 
                 value={nomeCliente}
@@ -45,9 +45,6 @@ export function NewServiceForm({onAddService}: questionarioProps){
                 type="text"
                 className="border-2 border-black-100 rounded-lg">
                 </input>
-
-                <br />
-                <br />
 
                 <strong>Modelo do aparelho:</strong>
                 <input
@@ -57,9 +54,6 @@ export function NewServiceForm({onAddService}: questionarioProps){
                 className="border-2 border-black-100 rounded-lg">
                 </input>
 
-                <br />
-                <br />
-
                 <strong>Defeito apresentado:</strong>
                 <input
                 value={defeito}
@@ -67,9 +61,6 @@ export function NewServiceForm({onAddService}: questionarioProps){
                 type="text"
                 className="border-2 border-black-100 rounded-lg">
                 </input>
-
-                <br />
-                <br />
 
                 <strong>Status da Ordem de Serviço:</strong>
                 <select
@@ -81,8 +72,7 @@ export function NewServiceForm({onAddService}: questionarioProps){
                     <option value="Finalizado">Finalizado</option>
                 </select>
 
-                <br />
-                <br />
+
             <div className="flex justify-center">
                 <strong><button
                 type="button"

@@ -12,10 +12,6 @@ function ServiceCard({servico, index, mudarStatus}: Props){
     ? 'bg-yellow-100 border-yellow-500'
     : 'bg-gray-200 border-gray-500 text-gray-500'
 
-    const corEtiqueta = servico.status === 'Aberto'
-    ? 'bg-yellow-500 text-black'
-    : 'bg-gray-500 text-white'
-
     return(
         <div className={`p-4 rounded shadow mb-4 ${corBalao}`}>
             <div className="flex justify-between items-start mb-2">
