@@ -19,6 +19,12 @@ export function NewServiceForm({onAddService}: questionarioProps){
     const[status, setStatus] = useState("Em manutenção")
 
     function salvar(){
+
+        if (nomeCliente.trim() === "" || modeloAparelho.trim() === "" || defeito.trim() === "") {
+        alert("Preencha todos os campos");
+        return
+    }
+
         const novaOS: questionario = {nomeCliente, modeloAparelho, defeito, status}
 
         onAddService(novaOS)
