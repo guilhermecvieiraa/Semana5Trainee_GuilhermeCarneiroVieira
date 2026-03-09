@@ -12,6 +12,12 @@ function App() {
       setServicos([...servicos, novoServico])
     }
 
+    function alterarStatus(index: number, novoStatus: string){
+      const novaLista = [...servicos]
+      novaLista[index].status = novoStatus
+      setServicos(novaLista)
+    }
+
   return (
     <div className="max-w-3xl mx-auto p-4">
       <Header />
@@ -20,7 +26,7 @@ function App() {
         <h2 className="text-xl font-bold mb-4 text-center">Serviços Cadastrados</h2>
         
         {servicos.map((servico, index) => (
-          <ServiceCard key={index} servico={servico} />
+          <ServiceCard key={index} index={index} servico={servico} mudarStatus={alterarStatus}/>
         ))}
       </div>
 

@@ -16,7 +16,7 @@ export function NewServiceForm({onAddService}: questionarioProps){
     const[nomeCliente, setNomeCliente] = useState("")
     const[modeloAparelho, setModeloAparelho] = useState("")
     const[defeito, setDefeito] = useState("")
-    const[status, setStatus] = useState("Em manutenção")
+    const[status, setStatus] = useState("Aberto")
 
     function salvar(){
 
@@ -32,7 +32,7 @@ export function NewServiceForm({onAddService}: questionarioProps){
         setNomeCliente("")
         setModeloAparelho("")
         setDefeito("")
-        setStatus("Em manutenção")
+        setStatus("Aberto")
     }
 
     return(
@@ -77,7 +77,7 @@ export function NewServiceForm({onAddService}: questionarioProps){
                     onChange={(evento) => setStatus(evento.target.value)}
                     className="border-2 border-black-100 rounded-lg w-35 mb-6 px-2 py-1"
                 >
-                    <option value="Em manutenção">Em manutenção</option>
+                    <option value="Aberto">Aberto</option>
                     <option value="Finalizado">Finalizado</option>
                 </select>
 
