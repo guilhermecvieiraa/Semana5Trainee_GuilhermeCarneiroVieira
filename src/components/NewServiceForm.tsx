@@ -4,6 +4,7 @@ export interface questionario{
     nomeCliente: string
     modeloAparelho: string
     defeito: string
+    status: string
 }
 
 interface questionarioProps{
@@ -15,15 +16,17 @@ export function NewServiceForm({onAddService}: questionarioProps){
     const[nomeCliente, setNomeCliente] = useState("")
     const[modeloAparelho, setModeloAparelho] = useState("")
     const[defeito, setDefeito] = useState("")
+    const[status, setStatus] = useState("Em manutenção")
 
     function salvar(){
-        const novaOS: questionario = {nomeCliente, modeloAparelho, defeito}
+        const novaOS: questionario = {nomeCliente, modeloAparelho, defeito, status}
 
         onAddService(novaOS)
 
         setNomeCliente("")
         setModeloAparelho("")
         setDefeito("")
+        setStatus("Em manutenção")
     }
 
     return(
@@ -62,14 +65,28 @@ export function NewServiceForm({onAddService}: questionarioProps){
                 <br />
                 <br />
 
+                <strong>Status da Ordem de Serviço:</strong>
+                <select
+                    value={status}
+                    onChange={(evento) => setStatus(evento.target.value)}
+                    className="border-2 border-black-100 rounded-lg w-35 mb-6 px-2 py-1"
+                >
+                    <option value="Em manutenção">Em manutenção</option>
+                    <option value="Finalizado">Finalizado</option>
+                </select>
+
+                <br />
+                <br />
+            <div className="flex justify-center">
                 <strong><button
                 type="button"
                 onClick={salvar}
                 className="w-20 mx-auto bg-cyan-400 text-black border-none rounded cursor-pointer">
                     Salvar
                 </button></strong>
-            </form>
-        </div>
+            </div>
+        </form>
+    </div>
     )
 }
 
