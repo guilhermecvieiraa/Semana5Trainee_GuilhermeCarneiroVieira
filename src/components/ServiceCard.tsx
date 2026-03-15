@@ -1,14 +1,14 @@
-import type { ServiceOrder } from '../types'
+import type { serviceOrder } from '../types'
 
 interface Props{
     serviceOrder: serviceOrder;
     Delete?: (id:number) => void;
 }
 
-const ServiceCard({serviceOrder, Delete}: Props) => {
-    let statusColor = '';
+const ServiceCard = ({serviceOrder, Delete}: Props) => {
+    let statusColor = ''
 
-    if (serviceOrder.status) === 'open' {
+    if (serviceOrder.status === 'open') {
         statusColor = 'bg-yellow-100 border-yellow-500'
     }
 
