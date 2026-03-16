@@ -8,8 +8,8 @@ const MainLayout = () => {
         
         <nav className="flex justify-center gap-6 text-lg font-medium text-gray-600">
           <Link to="/" className="hover:text-blue-500">Dashboard</Link>
-          <Link to="/clients" className="hover:text-blue-500">Clients</Link>
-          <Link to="/service-orders" className="hover:text-blue-500">Service Orders</Link>
+          <Link to="/clients" className="hover:text-blue-500">Clientes</Link>
+          <Link to="/service-orders" className="hover:text-blue-500">Ordens de serviço</Link>
         </nav>
       </header>
 

@@ -75,7 +75,7 @@ async function fetchClients() {
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Gestão de clientes</h2>
 
       <form onSubmit={handleAddClient} className="bg-white p-6 rounded-lg shadow-md border mb-8 flex flex-col gap-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Adcionar novo cliente</h3>
+        <h3 className="text-lg font-semibold border-b pb-2">Adicionar novo cliente</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <input 
@@ -108,7 +108,7 @@ async function fetchClients() {
           type="submit" 
           className="bg-blue-600 text-white font-bold p-2 rounded hover:bg-blue-700 cursor-pointer"
         >
-          Save Client
+          Salvar cliente 
         </button>
       </form>
 
