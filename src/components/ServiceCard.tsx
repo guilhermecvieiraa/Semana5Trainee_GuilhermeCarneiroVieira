@@ -29,9 +29,9 @@ const ServiceCard = ({serviceOrder, Delete}: Props) => {
                 {Delete && (
                     <button
                     onClick={() => Delete(serviceOrder.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600"
+                    className=" relative z-10 bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600 cursor-pointer"
                     >
-                        Delete
+                    Deletar
                     </button>
                 )}
 
