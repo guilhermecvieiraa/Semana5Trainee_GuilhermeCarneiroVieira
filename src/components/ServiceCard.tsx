@@ -24,7 +24,7 @@ const ServiceCard = ({serviceOrder, Delete}: Props) => {
     return(
         <div className={`p-4 rounded shadow mb-4 ${statusColor}`}>
             <div className="flex justify-between items-start mb-2">
-                <p><strong>Client ID:</strong> {serviceOrder.client_id}</p>
+                <p><strong>ID do cliente:</strong> {serviceOrder.clientId}</p>
 
                 {Delete && (
                     <button
@@ -37,8 +37,8 @@ const ServiceCard = ({serviceOrder, Delete}: Props) => {
 
             </div>
 
-            <p><strong>Device:</strong> {serviceOrder.device}</p>
-            <p><strong>Issue:</strong> {serviceOrder.issue}</p>
+            <p><strong>Aparelho:</strong> {serviceOrder.device}</p>
+            <p><strong>Status Inicial</strong> {serviceOrder.issue}</p>
             
             <div className="flex items-center gap-2 mt-2">
                 <strong className="text-sm">Status:</strong>

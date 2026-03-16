@@ -35,32 +35,48 @@ async function fetchData() {
     }
   }
 
-  async function handleAddServiceOrder(event: React.SyntheticEvent) {
-    event.preventDefault();
+async function handleAddServiceOrder(event: React.SyntheticEvent) {
+  event.preventDefault();
 
-    if (!clientId) {
-      alert("Por favor, selecione um cliente.");
-      return;
-    }
+  if (!clientId) {
+    alert("Por favor, selecione um cliente.");
+    return;
+  }
 
-    try {
-      const newOrder = await createServiceOrder({
-        client_id: Number(clientId),
-        device,
-        issue,
-        status
+try {
+
+    console.log("PACOTE SENDO ENVIADO:", {
+      clientId: Number(clientId),
+      device,
+      description: issue,
+      status
       });
 
-      setServiceOrders([...serviceOrders, newOrder]);
+    const response = await createServiceOrder({
+      clientId: Number(clientId),
+      device,
+      issue: issue,
+      status
+    });
+
+    const createdOrder = (response as any).data || response;
+
+    if (createdOrder && createdOrder.id) {
+      setServiceOrders([...serviceOrders, createdOrder]);
 
       setClientId('');
       setDevice('');
       setIssue('');
       setStatus('open');
-    } catch (error) {
-      console.error("Erro ao criar ordem de serviço:", error);
+      
+      alert("Ordem de serviço criada com sucesso!");
     }
+
+  } catch (error) {
+    console.error("Error ao criar ordem de serviço:", error);
+    alert("Erro ao criar a ordem. Verifique o console.");
   }
+}
 
   async function handleDeleteServiceOrder(id: number) {
     try {
@@ -78,14 +94,14 @@ async function fetchData() {
   if (isLoading) {
     return (
       <div className="flex justify-center mt-10">
-        <p className="text-xl text-gray-500">Loading service orders...</p>
+        <p className="text-xl text-gray-500">Carregando ordem de serviço.</p>
       </div>
     );
   }
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Ordem da gestão dos serviços</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Gestão das ordens de serviço</h2>
 
       <form onSubmit={handleAddServiceOrder} className="bg-white p-6 rounded-lg shadow-md border mb-8 flex flex-col gap-4">
         <h3 className="text-lg font-semibold border-b pb-2">Abrir nova ordem de serviço</h3>
@@ -138,9 +154,9 @@ async function fetchData() {
               onChange={(e) => setStatus(e.target.value as 'open' | 'in_progress' | 'done')}
               className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
             >
-              <option value="open">Open</option>
-              <option value="in_progress">In Progress</option>
-              <option value="done">Done</option>
+              <option value="open">Aberto</option>
+              <option value="in_progress">Em progresso</option>
+              <option value="done">Finalizado</option>
             </select>
           </div>
 
@@ -148,9 +164,9 @@ async function fetchData() {
         
         <button 
           type="submit" 
-          className="bg-blue-600 text-white font-bold p-2 rounded hover:bg-blue-700 transition-colors mt-2"
+          className="bg-blue-600 text-white font-bold p-2 rounded hover:bg-blue-700 cursor-pointer"
         >
-          Create Service Order
+          Criar ordem de serviço
         </button>
       </form>
 

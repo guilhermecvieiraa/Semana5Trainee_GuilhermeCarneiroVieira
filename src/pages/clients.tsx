@@ -108,7 +108,7 @@ async function fetchClients() {
           type="submit" 
           className="bg-blue-600 text-white font-bold p-2 rounded hover:bg-blue-700 cursor-pointer"
         >
-          Salvar cliente 
+          Salvar cliente
         </button>
       </form>
 
@@ -136,7 +136,7 @@ async function fetchClients() {
 
   ) : (
     <p className="text-center text-gray-600 bg-gray-50 p-4 rounded border">
-      No clients found.
+      Nenhum cliente encontrado.
     </p>
   )}
 </div>

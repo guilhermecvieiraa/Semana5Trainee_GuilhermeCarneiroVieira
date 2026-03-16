@@ -1,6 +1,6 @@
 export interface serviceOrder{
     id: number;
-    client_id: number;
+    clientId: number;
     device: string;
     issue: string;
     status: 'open' | 'in_progress' | 'done';

@@ -10,21 +10,21 @@ const [isLoading, setIsLoading] = useState<boolean>(true)
 
 async function fetchServiceOrder() {
     try {
-        setIsLoading(true)
+        setIsLoading(true);
 
-        const data = await getAllServiceOrders()
+        const response = await getAllServiceOrders();
 
-        setServiceOrders(data);
+        const actualList = Array.isArray(response) ? response : (response as any).data;
+
+        setServiceOrders(Array.isArray(actualList) ? actualList : []);
+        
+    } catch (error) {
+        console.error("Erro ao buscar a ordem de serviço:", error);
+        setServiceOrders([]);
+    } finally {
+        setIsLoading(false);
     }
-
-    catch (error) {
-        console.error("Erro ao buscar a ordem de serviço.")
-    }
-
-    finally {
-        setIsLoading(false)
-        }
-    }
+}
 
     useEffect(() => {
         fetchServiceOrder()
