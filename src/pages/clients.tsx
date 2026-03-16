@@ -14,7 +14,12 @@ const Clients = () => {
     try {
       setIsLoading(true);
       const data = await getAllClients();
-      setClients(data);
+      if (Array.isArray(data)){
+        setClients(data);
+      }
+      else{
+        setClients([])
+      }
     } catch (error) {
       console.error("Error fetching clients:", error);
     } finally {
@@ -103,30 +108,34 @@ const Clients = () => {
         </button>
       </form>
 
-      <div className="flex flex-col gap-4">
-        <h3 className="text-lg font-semibold">Registered Clients</h3>
-        
-        {clients.length === 0 ? (
-          <p className="text-center text-gray-600 bg-gray-50 p-4 rounded border">No clients found.</p>
-        ) : (
-          clients.map((client) => (
-            <div key={client.id} className="bg-white p-4 rounded-lg border shadow-sm flex justify-between items-center">
-              <div>
-                <p className="font-bold text-lg">{client.name}</p>
-                <p className="text-sm text-gray-600">
-                  <span className="font-semibold">Email:</span> {client.email} | <span className="font-semibold">Phone:</span> {client.phone}
-                </p>
-              </div>
-              <button 
-                onClick={() => handleDeleteClient(client.id)}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
-              >
-                Delete
-              </button>
-            </div>
-          ))
-        )}
+<div className="flex flex-col gap-4">
+  <h3 className="text-lg font-semibold">Registered Clients</h3>
+  
+  {Array.isArray(clients) && clients.length > 0 ? (
+    
+    clients.map((client) => (
+      <div key={client.id} className="bg-white p-4 rounded-lg border shadow-sm flex justify-between items-center">
+        <div>
+          <p className="font-bold text-lg">{client.name}</p>
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold">Email:</span> {client.email} | <span className="font-semibold">Phone:</span> {client.phone}
+          </p>
+        </div>
+        <button 
+          onClick={() => handleDeleteClient(client.id)}
+          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+        >
+          Delete
+        </button>
       </div>
+    ))
+
+  ) : (
+    <p className="text-center text-gray-600 bg-gray-50 p-4 rounded border">
+      No clients found.
+    </p>
+  )}
+</div>
     </div>
   );
 };

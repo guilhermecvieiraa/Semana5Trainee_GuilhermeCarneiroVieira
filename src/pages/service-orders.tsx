@@ -22,8 +22,8 @@ const ServiceOrders = () => {
         getAllClients()
       ]);
       
-      setServiceOrders(osData);
-      setClients(clientsData);
+      setServiceOrders(Array.isArray(osData) ? osData : []);
+      setClients(Array.isArray(clientsData) ? clientsData : []);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
