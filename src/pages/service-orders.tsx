@@ -29,7 +29,7 @@ async function fetchData() {
       setClients(Array.isArray(finalClients) ? finalClients : []);
       
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Erro ao buscar dados:", error);
     } finally {
       setIsLoading(false);
     }
@@ -39,7 +39,7 @@ async function fetchData() {
     event.preventDefault();
 
     if (!clientId) {
-      alert("Please select a client.");
+      alert("Por favor, selecione um cliente.");
       return;
     }
 
@@ -58,7 +58,7 @@ async function fetchData() {
       setIssue('');
       setStatus('open');
     } catch (error) {
-      console.error("Error creating service order:", error);
+      console.error("Erro ao criar ordem de serviço:", error);
     }
   }
 
@@ -67,7 +67,7 @@ async function fetchData() {
       await deleteServiceOrder(id);
       setServiceOrders(serviceOrders.filter(order => order.id !== id));
     } catch (error) {
-      console.error("Error deleting service order:", error);
+      console.error("Erro ao deletar ordem de serviço:", error);
     }
   }
 
@@ -85,22 +85,22 @@ async function fetchData() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Service Orders Management</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Ordem da gestão dos serviços</h2>
 
       <form onSubmit={handleAddServiceOrder} className="bg-white p-6 rounded-lg shadow-md border mb-8 flex flex-col gap-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Open New Service Order</h3>
+        <h3 className="text-lg font-semibold border-b pb-2">Abrir nova ordem de serviço</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           
           <div className="flex flex-col">
-            <label className="text-sm text-gray-600 mb-1 font-semibold">Client</label>
+            <label className="text-sm text-gray-600 mb-1 font-semibold">Cliente</label>
             <select 
               required
               value={clientId} 
               onChange={(e) => setClientId(e.target.value)}
               className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
             >
-              <option value="" disabled>Select a client...</option>
+              <option value="" disabled>Selecione um cliente</option>
               {clients.map(client => (
                 <option key={client.id} value={client.id}>
                   {client.name} (ID: {client.id})
@@ -110,7 +110,7 @@ async function fetchData() {
           </div>
 
           <div className="flex flex-col">
-            <label className="text-sm text-gray-600 mb-1 font-semibold">Device</label>
+            <label className="text-sm text-gray-600 mb-1 font-semibold">Aparelhos</label>
             <input 
               type="text"  
               required 
@@ -121,7 +121,7 @@ async function fetchData() {
           </div>
 
           <div className="flex flex-col">
-            <label className="text-sm text-gray-600 mb-1 font-semibold">Issue Description</label>
+            <label className="text-sm text-gray-600 mb-1 font-semibold">Descrição do defeito:</label>
             <input 
               type="text"  
               required 
@@ -132,7 +132,7 @@ async function fetchData() {
           </div>
 
           <div className="flex flex-col">
-            <label className="text-sm text-gray-600 mb-1 font-semibold">Initial Status</label>
+            <label className="text-sm text-gray-600 mb-1 font-semibold">Status inicial</label>
             <select 
               value={status} 
               onChange={(e) => setStatus(e.target.value as 'open' | 'in_progress' | 'done')}
@@ -155,10 +155,10 @@ async function fetchData() {
       </form>
 
       <div className="flex flex-col gap-4">
-        <h3 className="text-lg font-semibold">Current Service Orders</h3>
+        <h3 className="text-lg font-semibold">Ordens de Serviço atuais</h3>
         
         {serviceOrders.length === 0 ? (
-          <p className="text-center text-gray-600 bg-gray-50 p-4 rounded border">No service orders found.</p>
+          <p className="text-center text-gray-600 bg-gray-50 p-4 rounded border">Nenhuma ordem de serviço encontrada.</p>
         ) : (
           serviceOrders.map((order) => (
             <ServiceCard 
