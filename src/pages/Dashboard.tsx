@@ -45,15 +45,16 @@ async function fetchServiceOrder() {
             </h2>
 
         <div className="flex flex-col gap-4">
-        {serviceOrders.map((order) => (
-          <ServiceCard 
-            key={order.id}
-            serviceOrder={order}
-          />
-        ))}
+            {Array.isArray(serviceOrders) && serviceOrders.length > 0 ? (
+    serviceOrders.map((order) => (
+    <ServiceCard key={order.id} serviceOrder={order} />
+    ))
+    ) : (
+        <p className="text-center text-gray-500">Nenhuma ordem encontrada.</p>
+    )}
       </div>
     </div>
   );
 };
 
-export default Dashboard
+export default Dashboard 

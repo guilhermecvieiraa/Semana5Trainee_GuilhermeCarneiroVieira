@@ -2,7 +2,7 @@ import { api } from './api'
 import type { serviceOrder, CreateServiceOrderData } from '../types'
 
 export async function getAllServiceOrders(): Promise<serviceOrder[]> {
-  const response = await api.get<serviceOrder[]>('/service-orders');
+  const response = await api.get('/service-orders');
   return response.data;
 }
 
