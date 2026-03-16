@@ -10,30 +10,34 @@ const Clients = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
-  async function fetchClients() {
+async function fetchClients() {
     try {
       setIsLoading(true);
-      const data = await getAllClients();
-      if (Array.isArray(data)){
-        setClients(data);
-      }
-      else{
-        setClients([])
+      const response = await getAllClients();
+      
+      const actualList = Array.isArray(response) ? response : (response as any).data;
+
+      if (Array.isArray(actualList)) {
+        setClients(actualList);
+      } else {
+        setClients([]);
       }
     } catch (error) {
       console.error("Error fetching clients:", error);
+      setClients([]);
     } finally {
       setIsLoading(false);
     }
   }
-
-  async function handleAddClient(event: React.SyntheticEvent) {
+ async function handleAddClient(event: React.SyntheticEvent) {
     event.preventDefault()
     
     try {
-      const newClient = await createClient({ name, email, phone });
+      const response = await createClient({ name, email, phone });
+  
+      const clientData = (response as any).data || response;
       
-      setClients([...clients, newClient]);
+      setClients([...clients, clientData]);
       
       setName('');
       setEmail('');
@@ -102,7 +106,7 @@ const Clients = () => {
         
         <button 
           type="submit" 
-          className="bg-blue-600 text-white font-bold p-2 rounded hover:bg-blue-700 transition-colors mt-2"
+          className="bg-blue-600 text-white font-bold p-2 rounded hover:bg-blue-700 cursor-pointer"
         >
           Save Client
         </button>
@@ -123,7 +127,7 @@ const Clients = () => {
         </div>
         <button 
           onClick={() => handleDeleteClient(client.id)}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600  cursor-pointer"
         >
           Delete
         </button>

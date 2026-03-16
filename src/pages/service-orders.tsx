@@ -14,16 +14,20 @@ const ServiceOrders = () => {
   const [issue, setIssue] = useState<string>('');
   const [status, setStatus] = useState<'open' | 'in_progress' | 'done'>('open');
 
-  async function fetchData() {
+async function fetchData() {
     try {
       setIsLoading(true);
       const [osData, clientsData] = await Promise.all([
         getAllServiceOrders(),
         getAllClients()
       ]);
+
+      const finalOrders = Array.isArray(osData) ? osData : (osData as any).data;
+      const finalClients = Array.isArray(clientsData) ? clientsData : (clientsData as any).data;
+
+      setServiceOrders(Array.isArray(finalOrders) ? finalOrders : []);
+      setClients(Array.isArray(finalClients) ? finalClients : []);
       
-      setServiceOrders(Array.isArray(osData) ? osData : []);
-      setClients(Array.isArray(clientsData) ? clientsData : []);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
