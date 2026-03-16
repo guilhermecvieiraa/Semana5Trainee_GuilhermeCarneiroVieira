@@ -108,8 +108,7 @@ const ServiceOrders = () => {
           <div className="flex flex-col">
             <label className="text-sm text-gray-600 mb-1 font-semibold">Device</label>
             <input 
-              type="text" 
-              placeholder="Ex: iPhone 13" 
+              type="text"  
               required 
               value={device} 
               onChange={(e) => setDevice(e.target.value)}
@@ -120,8 +119,7 @@ const ServiceOrders = () => {
           <div className="flex flex-col">
             <label className="text-sm text-gray-600 mb-1 font-semibold">Issue Description</label>
             <input 
-              type="text" 
-              placeholder="Ex: Broken screen" 
+              type="text"  
               required 
               value={issue} 
               onChange={(e) => setIssue(e.target.value)}
