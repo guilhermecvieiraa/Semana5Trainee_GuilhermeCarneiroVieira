@@ -1,35 +1,50 @@
-import type { questionario } from "./NewServiceForm";
+import type { serviceOrder } from '../types'
 
 interface Props{
-    servico: questionario
-    index: number
-    mudarStatus: (index: number, novoStatus: string) => void
+    serviceOrder: serviceOrder;
+    Delete?: (id:number) => void;
 }
 
-function ServiceCard({servico, index, mudarStatus}: Props){
+const ServiceCard = ({serviceOrder, Delete}: Props) => {
+    let statusColor = ''
 
-    const corBalao = servico.status === 'Aberto'
-    ? 'bg-yellow-100 border-yellow-500'
-    : 'bg-gray-200 border-gray-500 text-gray-500'
+    if (serviceOrder.status === 'open') {
+        statusColor = 'bg-yellow-100 border-yellow-500'
+    }
+
+    else if(serviceOrder.status === 'in_progress'){
+        statusColor = 'bg-blue-100 border-blue-500 text-blue-800'
+    }
+
+    else{
+        statusColor = 'bg-gray-200 border-gray-500 text-gray-500'
+    }
+
 
     return(
-        <div className={`p-4 rounded shadow mb-4 ${corBalao}`}>
+        <div className={`p-4 rounded shadow mb-4 ${statusColor}`}>
             <div className="flex justify-between items-start mb-2">
-                <p><strong>Cliente:</strong> {servico.nomeCliente}</p>
+                <p><strong>ID do cliente:</strong> {serviceOrder.clientId}</p>
+
+                {Delete && (
+                    <button
+                    onClick={() => Delete(serviceOrder.id)}
+                    className=" relative z-10 bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600 cursor-pointer"
+                    >
+                    Deletar
+                    </button>
+                )}
+
             </div>
-            <p><strong>Aparelho:</strong> {servico.modeloAparelho}</p>
-            <p><strong>Defeito:</strong> {servico.defeito}</p>
+
+            <p><strong>Aparelho:</strong> {serviceOrder.device}</p>
+            <p><strong>Status Inicial</strong> {serviceOrder.issue}</p>
             
             <div className="flex items-center gap-2 mt-2">
                 <strong className="text-sm">Status:</strong>
-                <select 
-                    value={servico.status}
-                    onChange={(evento) => mudarStatus(index, evento.target.value)}
-                    className="border border-gray-400 rounded px-2 py-1 text-sm bg-white text-black"
-                >
-                    <option value="Aberto">Aberto</option>
-                    <option value="Finalizado">Finalizado</option>
-                </select>
+
+                <span className="uppercase font-semibold">{serviceOrder.status}</span>
+
             </div>
 
         </div>
